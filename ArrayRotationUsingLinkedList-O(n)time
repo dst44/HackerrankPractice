@@ -1,0 +1,42 @@
+public class Solution {
+
+    // Complete the circularArrayRotation function below.
+    static int[] circularArrayRotation(int[] a, int k, int[] queries) {
+
+        int tempi = 0;
+        int n = a.length;
+        int i =0;
+
+        while((i+k)%n !=0){
+            i++;
+        }
+
+        int newzero = i;
+        tempi = i;
+
+
+        LinkedList<Integer> l = new LinkedList<Integer>();
+
+        for( i =newzero; i<a.length;i++){
+
+            //pushing into linkedList
+
+            l.add(a[i]);
+
+        }
+
+        int llength = l.size();
+        System.out.println(llength + " " + l.get(0));
+
+        for( i = newzero-1;i>=0;i--){
+            a[n-tempi+i] = a[i];
+        }
+        for(i = 0 ; i<llength ; i++){
+            a[i] = l.get(i);
+        }
+
+        System.out.println(Arrays.toString(a));
+
+        return a;
+
+    }
