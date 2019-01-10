@@ -1,0 +1,119 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    // Complete the nonDivisibleSubset function below.
+    static int nonDivisibleSubset(int k, int[] s) {
+
+        int n = s.length;
+        int[] freq = new int[k]; //this array will contain no. of times a 
+                                // particular remainder exists in the array
+
+        //int temp = s[2];
+
+        for(int i = 0 ; i<n ; i++){
+            s[i] = s[i]%k;
+        }
+
+        
+
+        for(int i = 0 ; i< n ; i++){
+
+            for(int j  =0 ; j<k;j++){
+                if(s[i] == j){
+                    freq[j]++;
+                    break;
+                }
+            }
+
+        }
+
+        
+        //return temp;
+
+        if((freq[k/2] == n || freq[0] == n) && k%2 ==0 ){
+            return 1;
+        }
+
+        int midrem = freq[k/2];
+        int max = 0;
+        if(midrem>0 && k%2 == 0){
+            max = 1;
+        }
+        if(freq[0]>0){
+            max++;
+        }
+        System.out.println(Arrays.toString(freq));
+        System.out.println(max);
+        int m = 0;
+
+        if(k%2 !=0){
+            m = k/2;
+        }else{
+            m = k/2-1;
+        }
+
+        for(int i = 1 ; i<=m ; i++){
+            
+            if(freq[i]>freq[k-i]){
+                max = max + freq[i];
+            }else{
+                max = max + freq[k-i];
+            }
+           
+
+        }
+
+        System.out.println(max);
+
+        //max = freq[2];
+
+        //checking for 0 remainder types
+
+        return max;
+
+    }
+    
+    
+    
+    
+    
+    
+
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) throws IOException {
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        String[] nk = scanner.nextLine().split(" ");
+
+        int n = Integer.parseInt(nk[0]);
+
+        int k = Integer.parseInt(nk[1]);
+
+        int[] S = new int[n];
+
+        String[] SItems = scanner.nextLine().split(" ");
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+
+        for (int i = 0; i < n; i++) {
+            int SItem = Integer.parseInt(SItems[i]);
+            S[i] = SItem;
+        }
+
+        int result = nonDivisibleSubset(k, S);
+
+        bufferedWriter.write(String.valueOf(result));
+        bufferedWriter.newLine();
+
+        bufferedWriter.close();
+
+        scanner.close();
+    }
+}
