@@ -2,7 +2,7 @@
 
         for (int i = 0; i < n; i++) {
             String retItem = new String(c[i]);  //c is the char array which will first be converted into a string
-            String ret[i] = retItem;
+            ret[i] = retItem;
         }
 
         return ret;
