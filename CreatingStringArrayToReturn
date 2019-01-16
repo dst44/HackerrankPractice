@@ -6,3 +6,19 @@
         }
 
         return ret;
+        
+        
+        
+        /*************** OR the following can be done
+        
+     String[] ret = new String[n];
+
+        for (int i = 0; i < n; i++) {
+            //String retItem = new String(c[i]);
+            ret[i] = new String(c[i]);//retItem;
+        }
+
+        return ret;
+    }
+    
+    **************************************************/
