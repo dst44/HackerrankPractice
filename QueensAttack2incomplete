@@ -1,0 +1,284 @@
+public class Solution {
+
+    // Complete the queensAttack function below.
+    static int queensAttack(int n, int k, int r_q, int c_q, int[][] o) {
+
+        //board side starts from 1 to n
+
+        int sum = 0;
+        int row = 0;
+        int col = 0;
+        int diag1 = 0;
+        int diag2= 0;
+
+
+        int minn = c_q-1;
+        int minp = n-c_q;
+        int temp = n-1;
+
+        int valr = r_q;
+        int valc = c_q;
+
+        //check row availability
+
+        //move the queen version
+
+        while(valr>0 && valc>0 && valr<=n && valc<=n){
+            valr--;
+            for(int i = 0 ; i<k ; i++){
+                if(o[i][0] == valr && o[i][1] == valc){
+                    temp = Math.abs(o[k][0]-r_q);
+                    if(temp<=minn){
+                        minn = temp;
+                    }
+                }
+            }
+        }
+
+        
+
+        while(valr>0 && valc>0 && valr<=n && valc<=n){
+            valr++;
+            for(int i = 0 ; i<k ; i++){
+                if(o[i][0] == valr && o[i][1] == valc){
+                    temp = Math.abs(o[k][0]-r_q);
+                    if(temp<=minp){
+                        minp = temp;
+                    }
+                }
+            }
+        }
+
+
+        row = minn + minp;
+
+
+        //now col
+
+        minn = r_q-1;
+        minp = n-r_q;
+
+
+        while(valr>0 && valc>0 && valr<=n && valc<=n){
+            valc--;
+            for(int i = 0 ; i<k ; i++){
+                if(o[i][0] == valr && o[i][1] == valc){
+                    temp = Math.abs(o[k][1]-c_q);
+                    if(temp<=minn){
+                        minn = temp;
+                    }
+                }
+            }
+        }
+
+        while(valr>0 && valc>0 && valr<=n && valc<=n){
+            valc++;
+            for(int i = 0 ; i<k ; i++){
+                if(o[i][0] == valr && o[i][1] == valc){
+                    temp = Math.abs(o[k][1]-r_q);
+                    if(temp<=minn){
+                        minp = temp;
+                    }
+                }
+            }
+        }
+
+        col = minp+minn;
+        ///////////////////////////////
+
+        /*
+
+        
+        for(int i = 0; i<k ; i++){  //columns in row of queen
+
+            if(o[i][0] == r_q){
+                temp = c_q - o[i][0];
+                if(temp>=0){
+                    if(temp<=minn){
+                        minn=temp;
+                    }
+                }if(temp<0){
+                    if(temp<=minp){
+                        minp = temp;
+                    }
+                }
+            }
+
+        }
+        if(minn>0){
+            minn--;
+        }
+        if(minp<0){
+            minp++;
+        }
+
+        System.out.println(minn +" "+minp);
+
+        row = minn-minp; // CUZ MINP GONNA BE -VE
+
+        minn = 10000;
+        minp= 10000;
+
+        //now for cols
+
+        for (int i = 0; i < k; i++) { // columns in row of queen
+
+            if (o[i][1] == c_q) {
+                temp = r_q - o[i][1];
+                if (temp >= 0) {
+                    if (temp <= minn) {
+                        minn = temp;
+                    }
+                }
+                if (temp < 0) {
+                    if (temp <= minp) {
+                        minp = temp;
+                    }
+                }
+            }
+
+        }
+        if (minn > 0) {
+            minn--;
+        }
+        if (minp < 0) {
+            minp++;
+        }
+
+        col = minn - minp; // CUZ MINP GONNA BE -VE
+
+        minn = 10000;
+        minp = 10000;
+        temp =0;
+*/
+
+        //diag1's turn -> /
+
+        //we'll move the queen instead for identifying diagonal length
+
+
+
+        //if(r_q>=c_q){
+
+            //iterating through \ diagonal - down portion
+
+            minn = 10000;
+            minp = 10000;
+
+            while(valr>0 && valc>0 && valr<=n && valc<=n){
+                valr++;
+                valc--;
+                for(int i = 0 ; i<k ; i++){
+                    if(o[i][0] == valr && o[i][1] == valc){
+                        temp = Math.abs(o[k][0]-r_q);
+                        if(temp<=minn){
+                            minn = temp;
+                        }
+                    }
+                }
+            }
+
+            valc= c_q;
+            valr = r_q;
+
+            if(minn==10000){
+                minn = Math.min(c_q,r_q);
+            }
+            
+            //min=10000;
+            temp =0;
+
+
+            while(valr>0 && valc>0 && valr<=n && valc<=n){
+                valr--;
+                valc++;
+                for(int i = 0 ; i<k ; i++){
+                    if(o[i][0] == valr && o[i][1] == valc){
+                        temp = Math.abs(r_q-o[k][0]);
+                        if(temp<=minp){
+                            minp = temp;
+                        }
+                    }
+                }
+            }
+            if(minp==10000){
+                minp=Math.min(c_q,r_q)
+            }
+
+            minn=10000;
+            minp=10000;
+            temp=0;
+
+            valr=r_q;
+            valc = r_c;
+
+
+            //solving for \ diagonal
+            //iterating through \ diagonal - down portion
+
+            minn = 
+
+            while(valr>0 && valc>0 && valr<=n && valc<=n){
+                valr--;
+                valc--;
+                for(int i = 0 ; i<k ; i++){
+                    if(o[i][0] == valr && o[i][1] == valc){
+                        temp = Math.abs(o[k][0]-r_q);
+                        if(temp<=minn){
+                            minn = temp;
+                        }
+                    }
+                }
+            }
+
+            valc= c_q;
+            valr = r_q;
+
+            if(minn>0){
+                minn--;
+            }
+            if(minn!=9999){
+                diag2= minn;
+            }
+            
+            //min=10000;
+            temp =0;
+
+            valr = r_q;
+            valc = c_q;
+
+
+            while(valr>0 && valc>0 && valr<=n && valc<=n){
+                valr++;
+                valc++;
+                for(int i = 0 ; i<k ; i++){
+                    if(o[i][0] == valr && o[i][1] == valc){
+                        temp = Math.abs(r_q-o[k][0]);
+                        if(temp<=minp){
+                            minp = temp;
+                        }
+                    }
+                }
+            }
+
+            if(minp>0){
+                minp--;
+            }
+            if(minp!=9999){
+                diag2= diag2 + minp;
+            }
+
+            minn=10000;
+            minp=10000;
+
+
+       // }
+
+        sum = row + col + diag1 + diag2;
+
+        return sum;
+
+        
+        
+
+    }
